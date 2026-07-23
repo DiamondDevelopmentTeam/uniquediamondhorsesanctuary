@@ -23,13 +23,13 @@ function fixPublicImagePaths(): Plugin {
       }
 
       return {
-        code: code.replaceAll('/images/', `${base}images/`),
+        code: code.replace(/\/images\//g, `${base}images/`),
         map: null,
       }
     },
 
     transformIndexHtml(html) {
-      return html.replaceAll('/images/', `${base}images/`)
+      return html.replace(/\/images\//g, `${base}images/`)
     },
   }
 }
