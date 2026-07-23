@@ -123,7 +123,7 @@ export default function Layout() {
               <a href={socialLinks.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a>
               <a href={socialLinks.tiktok} target="_blank" rel="noreferrer" aria-label="TikTok"><span className="social-letter">T</span></a>
               <a href={socialLinks.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube /></a>
-              <a href={socialLinks.zeffy} target="_blank" rel="noreferrer" aria-label="Zeffy"><span className="social-letter">Z</span></a>
+              {/* <a href={socialLinks.zeffy} target="_blank" rel="noreferrer" aria-label="Zeffy"><span className="social-letter">Z</span></a> */}
             </div>
           </div>
 
