@@ -7,6 +7,7 @@ import DonatePage from './pages/DonatePage'
 import FaqPage from './pages/FaqPage'
 import GalleryPage from './pages/GalleryPage'
 import HomePage from './pages/HomePage'
+import HorseProfilePage from './pages/HorseProfilePage'
 import HorsesPage from './pages/HorsesPage'
 import NewsPage from './pages/NewsPage'
 import NotFoundPage from './pages/NotFoundPage'
@@ -19,6 +20,7 @@ export default function App() {
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="horses" element={<HorsesPage />} />
+        <Route path="horses/:horseSlug" element={<HorseProfilePage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="donate" element={<DonatePage />} />
         <Route path="shop" element={<ShopPage />} />

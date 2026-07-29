@@ -12,7 +12,7 @@ export default function NewsPage() {
         <div className="container news-stack">
           <Reveal className="news-feature">
             <div className="news-feature__image">
-              <img src="/images/horse-colt-dutchess.webp" alt="Mini horses at Unique Diamond Horse Sanctuary" />
+              <img src="/images/horses/star-and-dutchess-01-1200.webp" alt="Star and Dutchess standing together at Unique Diamond Horse Sanctuary" />
               <span><CalendarDays /> 2026 Community Project</span>
             </div>
             <article>

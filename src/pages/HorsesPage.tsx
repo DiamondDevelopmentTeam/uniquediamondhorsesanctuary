@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import { Heart, X } from 'lucide-react'
+import { ArrowRight, Heart } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import DonateButton from '../components/DonateButton'
 import PageHero from '../components/PageHero'
+import ResponsiveImage from '../components/ResponsiveImage'
 import Reveal from '../components/Reveal'
-import { horses, type Horse } from '../data/site'
+import { getHorseDonationUrl, horses } from '../data/site'
 
 export default function HorsesPage() {
-  const [selected, setSelected] = useState<Horse | null>(null)
-
   return (
     <>
       <PageHero eyebrow="Meet the rescue horses" title="They are not simply part of the sanctuary. They are its heart." image="/images/horse-field.webp">
@@ -35,10 +34,10 @@ export default function HorsesPage() {
         <div className="container">
           <div className="horse-grid">
             {horses.map((horse, index) => (
-              <Reveal key={horse.name} className="horse-card" delay={(index % 4) * 70}>
-                <button type="button" onClick={() => setSelected(horse)} aria-label={`Read ${horse.name}'s story`}>
+              <Reveal key={horse.slug} className="horse-card" delay={(index % 4) * 70}>
+                <Link className="horse-card__primary" to={`/horses/${horse.slug}`} aria-label={`Read ${horse.name}'s story`}>
                   <span className="horse-card__image-wrap">
-                    <img src={horse.image} alt={`${horse.name} at Unique Diamond Horse Sanctuary`} loading="lazy" />
+                    <ResponsiveImage photo={horse.photos[0]} sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 25vw" />
                     <span className="horse-card__hover">Read their story</span>
                   </span>
                   <span className="horse-card__copy">
@@ -46,28 +45,20 @@ export default function HorsesPage() {
                     <strong>{horse.name}</strong>
                     <span>{horse.summary}</span>
                   </span>
-                </button>
+                </Link>
+                <div className="horse-card__actions">
+                  <Link className="text-link" to={`/horses/${horse.slug}`}>
+                    Read their story <ArrowRight />
+                  </Link>
+                  <a href={getHorseDonationUrl(horse)} target="_blank" rel="noreferrer">
+                    {horse.sponsorshipLabel || `Support ${horse.name}`}
+                  </a>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
-
-      {selected && (
-        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="horse-modal-title">
-          <button className="modal__backdrop" type="button" onClick={() => setSelected(null)} aria-label="Close story" />
-          <article className="horse-modal">
-            <button className="modal__close" type="button" onClick={() => setSelected(null)} aria-label="Close story"><X /></button>
-            <img src={selected.image} alt={`${selected.name} at the sanctuary`} />
-            <div className="horse-modal__copy">
-              <span className="eyebrow">Meet {selected.name}</span>
-              <h2 id="horse-modal-title">{selected.name}</h2>
-              <p>{selected.story}</p>
-              <DonateButton className="button button--gold" label={`Support horses like ${selected.name}`} />
-            </div>
-          </article>
-        </div>
-      )}
     </>
   )
 }

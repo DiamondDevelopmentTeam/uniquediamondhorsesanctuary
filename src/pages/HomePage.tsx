@@ -1,6 +1,7 @@
 import { ArrowRight, HeartHandshake, ShieldCheck, Sparkles, Wheat } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import DonateButton from '../components/DonateButton'
+import ResponsiveImage from '../components/ResponsiveImage'
 import Reveal from '../components/Reveal'
 import { horses } from '../data/site'
 
@@ -100,7 +101,9 @@ export default function HomePage() {
           <div className="featured-horses">
             {horses.slice(0, 4).map((horse, index) => (
               <Reveal key={horse.name} className="featured-horse" delay={index * 90}>
-                <img src={horse.image} alt={`${horse.name}, a rescued horse at the sanctuary`} loading="lazy" />
+                <Link to={`/horses/${horse.slug}`} aria-label={`Read ${horse.name}'s story`}>
+                  <ResponsiveImage photo={horse.photos[0]} sizes="(max-width: 560px) 100vw, (max-width: 1100px) 50vw, 25vw" />
+                </Link>
                 <div>
                   <h3>{horse.name}</h3>
                   <p>{horse.summary}</p>

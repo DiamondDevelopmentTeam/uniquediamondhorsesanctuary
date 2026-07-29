@@ -27,10 +27,6 @@ function fixPublicImagePaths(): Plugin {
         map: null,
       }
     },
-
-    transformIndexHtml(html) {
-      return html.replace(/\/images\//g, `${base}images/`)
-    },
   }
 }
 
